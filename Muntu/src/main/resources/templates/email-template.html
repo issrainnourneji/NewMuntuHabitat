@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bienvenue chez Notre Service</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #193152;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            margin: 20px;
+            border-radius: 8px;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9em;
+            color: #666;
+            background-color: #f1f1f1;
+            margin-top: 20px;
+        }
+        .contact-info {
+            margin-top: 20px;
+            background-color: #4c8ec4;
+            padding: 15px;
+            border-radius: 8px;
+            color: white;
+        }
+        .contact-info p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>Bienvenue chez Notre Service</h1>
+</div>
+
+<div class="content">
+    <p>Bonjour <b th:text="${name}"></b>,</p>
+    <p>
+        Merci de vous être effectué une simulation de prestation. Nous sommes ravis de vous compter parmi nous. Vous serez bientôt contacté par l'agent que vous êtes affecté pour discuter le devis de votre projet de chantier.
+    </p>
+
+    <div class="contact-info">
+        <h3>Informations de votre agent :</h3>
+        <p><b>Nom :</b> <span th:text="${agentName}"></span></p>
+        <p><b>Email :</b> <span th:text="${agentEmail}"></span></p>
+    </div>
+
+    <p>Cordialement,<br>L'équipe.</p>
+</div>
+
+<div class="footer">
+    &copy; 2025 - Notre Service
+</div>
+</body>
+</html>
