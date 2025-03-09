@@ -1,0 +1,122 @@
+<div class="container-fluid">
+  <h3 class="text-center my-4">Calendrier des Rendez-vous</h3>
+
+  <div *ngIf="appointments.length === 0; else calendar">
+    <p>Aucun rendez-vous disponible pour le moment.</p>
+  </div>
+
+  <ng-template #calendar>
+    <div class="row">
+      <div class="col-12">
+        <div class="calendar-container">
+          <div class="calendar-header d-flex justify-content-between align-items-center">
+            <button class="btn btn-primary" (click)="prevMonth()">Précédent</button>
+            <span class="month-name">{{ currentMonth | date: 'MMMM yyyy' }}</span>
+            <button class="btn btn-primary" (click)="nextMonth()">Suivant</button>
+          </div>
+
+          <div class="calendar">
+            <div class="days-of-week d-flex justify-content-between">
+              <div class="day">Lun</div>
+              <div class="day">Mar</div>
+              <div class="day">Mer</div>
+              <div class="day">Jeu</div>
+              <div class="day">Ven</div>
+              <div class="day">Sam</div>
+              <div class="day">Dim</div>
+            </div>
+            <div class="calendar-days">
+              <div
+                *ngFor="let day of daysInMonth"
+                class="calendar-day"
+                [ngClass]="getDayClass(day)"
+                (click)="openAppointmentModal(appointmentModal, day)"
+              >
+                <div class="day-number">
+                  {{ day.date }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Button to show all appointments -->
+          <div class="text-center mt-4">
+            <button class="btn btn-secondary" (click)="toggleAppointmentTable()">Afficher tous les Rendez-vous</button>
+          </div>
+
+          <!-- Table of appointments -->
+          <div *ngIf="showAppointmentTable " class="mt-4 table-responsive">
+            <table class="table table-striped table-hover table-bordered">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Client</th>
+                  <th>Notes</th>
+                  <th>Date</th>
+                  <th>Type</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let appointment of appointments | paginate: { itemsPerPage: 5, currentPage: p }">
+                  <td>{{ appointment.clientEmail }}</td>
+                  <td>{{ appointment.notes }}</td>
+                  <td>{{ appointment.appointmentDate | date: 'short' }}</td>
+                  <td>{{ appointment.appointmentType }}</td>
+                  <td>
+                    <span class="badge" [ngClass]="getStatusBadgeClass(appointment.status)">
+                      {{ appointment.status }}
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #appointmentModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Détails des Rendez-vous</h5>
+      <button type="button" class="close" (click)="modal.dismiss()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div *ngFor="let appointment of selectedAppointments " class="appointment-details">
+        <p><strong>Client:</strong> {{ appointment.clientEmail }}</p>
+        <p><strong>Agent:</strong> {{ appointment.agentId }}</p>
+        <p><strong>Date:</strong> {{ appointment.appointmentDate | date: 'short' }}</p>
+        <p><strong>Type:</strong> {{ appointment.appointmentType }}</p>
+        <p><strong>Notes:</strong> {{ appointment.notes }}</p>
+        <span class="badge" [ngClass]="getStatusBadgeClass(appointment.status)">
+          {{ appointment.status }}
+        </span>
+        <div class="appointment-actions">
+          <button
+            *ngIf="appointment.status === 'PENDING' || appointment.status === 'MODIFICATION'"
+            class="btn btn-success"
+            (click)="confirmAppointment(appointment.id)"
+          >
+            Confirmer
+          </button>
+          <button
+            *ngIf="appointment.status === 'PENDING'"
+            class="btn btn-warning"
+            (click)="changeAppointment(appointment.id)"
+          >
+            Changer
+          </button>
+          <button
+            *ngIf="appointment.status === 'CONFIRMED'"
+            class="btn btn-danger"
+            (click)="onFinishEditing(appointment.id)"
+          >
+            <i class="bi bi-trash"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </ng-template>
+</div>

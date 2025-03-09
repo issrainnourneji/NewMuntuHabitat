@@ -1,0 +1,30 @@
+<div class="container my-5">
+  <h3 class="text-center mb-4">Posts</h3>
+
+  <!-- Formulaire de recherche -->
+  <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+    <div class="input-group">
+      <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+             aria-label="Search" aria-describedby="basic-addon2"
+             [(ngModel)]="searchTerm" name="searchTerm" (input)="searchPosts()">
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="button">
+          <i class="fas fa-search fa-sm"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Liste des posts -->
+  <div class="row mt-4">
+    <div class="col-12 mb-4" *ngFor="let post of displayedPosts">
+      <div class="card shadow-sm">
+        <img [src]="'http://localhost:8080/' + post.imageUrl" alt="Post Image" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <p class="card-text">{{ post.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

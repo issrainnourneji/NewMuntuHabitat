@@ -1,0 +1,107 @@
+<div class="profile container mt-5 p-4 shadow rounded bg-light">
+  <h2 class="text-primary text-center mb-4">Welcome {{ userInfo?.name }}</h2>
+
+  <ng-container *ngIf="error; else profileContent">
+    <div class="alert alert-danger text-center">{{ error }}</div>
+  </ng-container>
+
+  <ng-template #profileContent>
+    <div *ngIf="!isEditing">
+      <div class="mb-3">
+        <p><strong>Name:</strong> {{ userInfo?.name }}</p>
+        <p><strong>Email:</strong> {{ userInfo?.email }}</p>
+        <p><strong>Phone Number:</strong> {{ userInfo?.phoneNumber }}</p>
+        <p><strong>Address:</strong> {{ userInfo?.address }}</p>
+        <p><strong>Role:</strong> {{ userInfo?.role }}</p>
+      </div>
+      <button class="btn btn-primary me-2" (click)="editProfile()">Edit Profile</button>
+    </div>
+
+    <form *ngIf="isEditing" (ngSubmit)="updateProfile()" class="mt-4" #profileForm="ngForm">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name:</label>
+        <input
+          id="name"
+          [(ngModel)]="editForm.name"
+          name="name"
+          required
+          minlength="3"
+          class="form-control"
+          placeholder="Enter your name"
+          #name="ngModel"
+        />
+        <small *ngIf="name.invalid && name.touched" class="text-danger">Name is required (min 3 characters)</small>
+      </div>
+      <div class="mb-3">
+        <label for="phoneNumber" class="form-label">Phone Number:</label>
+        <input
+          id="phoneNumber"
+          [(ngModel)]="editForm.phoneNumber"
+          name="phoneNumber"
+          class="form-control"
+          placeholder="Enter your phone number"
+          #phone="ngModel"
+          pattern="^[0-9]{8,10}$"
+          required
+        />
+        <small *ngIf="phone.invalid && phone.touched" class="text-danger">Phone number must be between 8 and 10 digits</small>
+      </div>
+      <div class="mb-3">
+        <label for="address" class="form-label">Address:</label>
+        <input
+          id="address"
+          [(ngModel)]="editForm.address"
+          name="address"
+          class="form-control"
+          placeholder="Enter your address"
+          #address="ngModel"
+          required
+        />
+        <small *ngIf="address.invalid && address.touched" class="text-danger">Address is required</small>
+      </div>
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary me-2" [disabled]="profileForm.invalid">Save</button>
+        <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
+      </div>
+    </form>
+  </ng-template>
+
+  <app-prestation-prix></app-prestation-prix>
+</div>
+
+<!-- Success Modal -->
+<div
+  class="modal fade"
+  id="successModal"
+  tabindex="-1"
+  aria-labelledby="successModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title fw-bold" id="successModalLabel">Profile Updated</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body text-center">
+        <i class="bi bi-check-circle-fill text-success fs-1 mb-3"></i>
+        <p class="mb-0">Your profile has been updated successfully!</p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button
+          type="button"
+          class="btn btn-primary px-4"
+          data-bs-dismiss="modal"
+        >
+          OK
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

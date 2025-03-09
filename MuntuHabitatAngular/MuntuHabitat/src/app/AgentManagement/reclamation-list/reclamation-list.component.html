@@ -1,0 +1,56 @@
+<div class="container mt-4">
+  <h2 class="mb-4 text-center text-primary">Réclamations Assignées</h2>
+
+  <!-- Affichage des réclamations filtrées -->
+  <div *ngFor="let reclamation of reclamations | paginate: { itemsPerPage: 5, currentPage: p }" class="card mb-3 shadow-sm border-0 rounded-3">
+    <div class="card-body">
+      <h5 class="card-title text-secondary">{{ reclamation.objet }}</h5>
+      <p class="card-text"><strong>Client :</strong> {{ reclamation.email}}</p> 
+      <p class="card-text"><strong>Description :</strong> {{ reclamation.description }}</p>
+      <p class="card-text"><strong>Date :</strong> {{ reclamation.date | date: 'dd/MM/yyyy' }}</p>
+      <p class="card-text"><strong>Status :</strong> <span [ngClass]="{'text-warning': reclamation.status === 'PENDING', 'text-success': reclamation.status === 'RESOLVED'}">{{ reclamation.status }}</span></p>
+      <button class="btn btn-outline-danger btn-sm ms-2" (click)="deleteReclamation(reclamation.id)">
+        <i class="fas fa-trash-alt"></i> Supprimer
+      </button>
+      <!-- Affichage de la réponse si elle existe -->
+      <p *ngIf="reclamation.reponse" class="mt-3">
+        <strong>Réponse :</strong> {{ reclamation.reponse }}
+        <button *ngIf="reclamation.status === 'RESOLVED'" class="btn btn-outline-warning btn-sm ms-2" (click)="editResponse(reclamation)">
+          Modifier la réponse
+        </button>
+      </p>
+
+      <!-- Formulaire pour rédiger une nouvelle réponse si aucune réponse n'existe -->
+      <div *ngIf="!reclamation.reponse && reclamation.status === 'PENDING'" class="mt-3">
+        <textarea
+          [(ngModel)]="reclamation.agentResponse"
+          class="form-control mb-3"
+          rows="3"
+          placeholder="Rédigez votre réponse ici..."
+        ></textarea>
+        <button
+          class="btn btn-primary w-100"
+          (click)="respondToReclamation(reclamation.id, reclamation.agentResponse)"
+        >
+          Répondre
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formulaire pour modifier la réponse -->
+  <div *ngIf="selectedReclamationId !== null" class="mt-4">
+    <h3 class="text-primary">Modifier la réponse</h3>
+    <textarea [(ngModel)]="newResponse" class="form-control" rows="4" placeholder="Entrez la nouvelle réponse ici..."></textarea><br>
+
+    <!-- Affichage de la réponse en texte brut -->
+    <p class="mt-3"><strong>Réponse en cours :</strong> {{ newResponse }}</p>
+
+    <div class="d-flex justify-content-end mt-3">
+      <button class="btn btn-success me-2" (click)="saveResponse()">Sauvegarder la réponse</button>
+      <button class="btn btn-danger" (click)="cancelEdit()">Annuler</button>
+    </div>
+  </div>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+</div>

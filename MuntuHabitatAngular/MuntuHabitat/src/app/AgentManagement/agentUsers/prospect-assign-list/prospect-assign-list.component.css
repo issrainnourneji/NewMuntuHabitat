@@ -1,0 +1,117 @@
+/* Améliorations du conteneur */
+.prospects-container {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style du titre */
+h1 {
+  color: #193152; /* Couleur du titre */
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Style de la table */
+.table {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-size: 12px;  /* Taille de la police globale dans la table */
+}
+
+.table th {
+  background-color: #659deb;
+  color: white;
+  text-align: center;
+  padding: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.table td {
+  padding: 8px;
+  text-align: center;
+  color: #171f26;
+  font-size: 13px;
+  border-bottom: 1px solid #efefef;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+.table tr:hover {
+  background-color: #e8f4ff;
+  transition: background 0.3s ease;
+}
+
+/* Style du modal */
+.modal-content {
+  background-color: #ffffff;
+  border-radius: 10px;
+  font-size: 14px;  /* Réduction de la taille du texte dans le modal */
+}
+
+.modal-header {
+  background-color: #659deb;
+  color: white;
+}
+
+.modal-body p {
+  font-size: 14px;
+  color: #343c5e;
+}
+
+/* Bouton icon */
+.btn-info {
+  color: #fff;
+  background-color: #659deb;
+  border-color: #659deb;
+  font-size: 12px;
+  padding: 5px 10px;
+}
+
+.btn-info:hover {
+  background-color: #4c8ec4;
+  border-color: #4c8ec4;
+}
+
+.bi-eye {
+  margin-right: 5px;
+}
+
+/* Responsivité pour les petits écrans */
+@media (max-width: 768px) {
+  /* Réduction de la taille du texte et des paddings sur les petits écrans */
+  .table th,
+  .table td {
+    padding: 6px;
+    font-size: 10px;
+  }
+
+  .table {
+    font-size: 1px;  /* Réduit la taille de la police sur les petits écrans */
+  }
+
+  .prospects-container {
+    padding: 15px;  /* Réduit le padding du conteneur sur les petits écrans */
+  }
+
+  h1 {
+    font-size: 20px;  /* Réduit la taille du titre sur les petits écrans */
+  }
+
+  .btn-info {
+    font-size: 10px;  /* Réduit la taille du texte des boutons */
+    padding: 4px 8px;
+  }
+
+  .modal-body p {
+    font-size: 13px;  /* Réduit la taille du texte dans le modal */
+  }
+}

@@ -1,0 +1,213 @@
+/* Conteneur principal du calendrier */
+.calendar-container {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+/* En-tête du calendrier */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.month-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Jours de la semaine */
+.days-of-week {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-weight: bold;
+}
+
+.day {
+  width: 13%;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Conteneur des jours du calendrier */
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.calendar-day {
+  text-align: center;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.day-number {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.empty-day {
+  visibility: hidden;
+  background-color: transparent;
+  cursor: default;
+}
+
+/* Statuts */
+.pending-day {
+  background-color: #464143; /* Jaune */
+  color: #333;
+}
+
+.confirmed-day {
+  background-color: #28a745; /* Vert */
+  color: #333;
+}
+
+.modification-day {
+  background-color: #464143; /* Rouge */
+  color: #333;
+}
+
+/* Badges */
+.badge {
+  padding: 0.3em 0.6em;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  color: #fff;
+}
+
+.badge.bg-warning {
+  background-color: #ffc107; /* Jaune */
+}
+
+.badge.bg-success {
+  background-color: #28a745; /* Vert */
+}
+
+.badge.bg-danger {
+  background-color: #dc3545; /* Rouge */
+}
+
+/* Boutons */
+button {
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.btn-confirm {
+  background-color: #28a745; /* Vert */
+  color: #fff;
+}
+
+button.btn-pending {
+  background-color: #ffc107; /* Jaune */
+  color: #fff;
+}
+
+button.btn-complete {
+  background-color: #dc3545; /* Rouge */
+  color: #fff;
+}
+
+/* Boutons au survol */
+button:hover {
+  opacity: 0.9;
+}
+
+/* Gestion des jours sélectionnés */
+.selected-day {
+  background-color: #ffb347;
+  color: white;
+}
+
+/* Gestion des dimanches */
+.calendar-days div:nth-child(7n+1) {
+  background-color: #f0f0f0; /* Dimanche en gris clair */
+}
+
+/* Jours avec plusieurs rendez-vous */
+.multi-appointment {
+  background: linear-gradient(to right, rgba(255, 87, 34, 0.7) 50%, rgba(33, 150, 243, 0.7) 50%);
+  color: white;
+}
+
+.multi-appointment .day-number {
+  position: relative;
+  font-size: 0.9rem;
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 3px;
+}
+
+/* Animation au survol des jours */
+.calendar-day:hover {
+  opacity: 0.8;
+}
+
+/* Style des jours sans rendez-vous */
+.no-appointments {
+  background-color: #efefef;
+}
+
+/* Conteneur des actions */
+.appointment-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+.appointment-details {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+.close
+{
+  margin-left: 200px;
+}
+/* Modern Alert Styling */
+.alert {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 400px;
+  z-index: 1050;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.alert-info {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.alert .close {
+  color: white;
+}
+
+.alert-dismissible .close {
+  font-size: 1.5rem;
+  opacity: 0.7;
+}
+
+.alert-dismissible .close:hover {
+  opacity: 1;
+}
+
+

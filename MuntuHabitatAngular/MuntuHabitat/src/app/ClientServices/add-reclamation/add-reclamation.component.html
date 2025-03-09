@@ -1,0 +1,78 @@
+<div class="container mt-5">
+  <h2 class="text-center text-primary mb-4">Créer une Réclamation</h2>
+  <form [formGroup]="reclamationForm" (ngSubmit)="submitReclamation()">
+    <div class="form-group">
+      <label for="objet" class="text-muted">Objet</label>
+      <input
+        id="objet"
+        type="text"
+        class="form-control shadow-sm"
+        formControlName="objet"
+        placeholder="Saisissez l'objet de votre réclamation"
+      />
+      <div *ngIf="reclamationForm.get('objet')?.invalid && reclamationForm.get('objet')?.touched" class="text-danger">
+        L'objet est requis.
+      </div>
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="description" class="text-muted">Description</label>
+      <textarea
+        id="description"
+        class="form-control shadow-sm"
+        formControlName="description"
+        rows="5"
+        placeholder="Décrivez votre réclamation"
+      ></textarea>
+      <div
+        *ngIf="reclamationForm.get('description')?.invalid && reclamationForm.get('description')?.touched"
+        class="text-danger"
+      >
+        La description est requise.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-4 shadow-sm" [disabled]="reclamationForm.invalid">
+      Envoyer
+    </button>
+  </form>
+</div>
+
+<div class="container mt-4">
+  <h2 class="text-center text-primary mb-4">Mes réclamations</h2>
+  <div *ngFor="let reclamation of reclamations | paginate: { itemsPerPage: 4, currentPage: p }" class="card mb-3 shadow-lg border-0">
+    <div class="card-body">
+      <h5 class="card-title text-primary">{{ reclamation.objet }}</h5>
+      <p class="card-text text-muted"><strong>Description :</strong> {{ reclamation.description }}</p>
+      <p class="card-text text-muted"><strong>Date :</strong> {{ reclamation.date }}</p>
+      <p *ngIf="reclamation.reponse" class="card-text text-success">
+        <strong>Réponse :</strong> {{ reclamation.reponse }}
+      </p>
+      <p class="card-text"><strong>Status :</strong> {{ reclamation.status }}</p>
+
+    </div>
+  </div>
+</div>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+
+<!-- Modal -->
+<div class="modal fade" id="reclamationModal" tabindex="-1" aria-labelledby="reclamationModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reclamationModalLabel">Réclamation Ajoutée</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+      </div>
+      <div class="modal-body">
+        La réclamation a été ajoutée avec succès !
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

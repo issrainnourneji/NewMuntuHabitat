@@ -1,0 +1,55 @@
+/* Conteneur du formulaire */
+.container {
+  max-width: 600px; /* Limite la largeur du formulaire */
+  margin-top: 50px; /* Marge supérieure pour espacer du haut de la page */
+}
+
+/* Style pour les champs du formulaire */
+.form-control {
+  border-radius: 10px; /* Bords arrondis */
+  border: 1px solid #ddd; /* Bordure légère */
+  padding: 12px; /* Espacement interne */
+  transition: border-color 0.3s, box-shadow 0.3s; /* Transition pour la bordure et l'ombre */
+}
+
+.form-control:focus {
+  border-color: #4c8ec4; /* Bordure bleue lors du focus */
+  box-shadow: 0 0 5px rgba(76, 142, 196, 0.5); /* Ombre bleue subtile */
+}
+
+/* Style pour les labels */
+.form-label {
+  font-weight: bold;
+  color: #193152; /* Couleur du texte des labels */
+}
+
+/* Style pour les boutons */
+button[type="submit"] {
+  background-color: #4c8ec4; /* Couleur du bouton */
+  border: none; /* Retirer la bordure par défaut */
+  color: white; /* Couleur du texte */
+  font-size: 16px; /* Taille du texte */
+  padding: 15px; /* Espacement interne */
+  border-radius: 10px; /* Bords arrondis */
+  transition: background-color 0.3s; /* Transition de couleur */
+}
+
+button[type="submit"]:hover {
+  background-color: #193152; /* Couleur du bouton au survol */
+  cursor: pointer; /* Change le curseur en main lors du survol */
+}
+
+/* Style pour l'input de fichier */
+input[type="file"] {
+  padding: 10px; /* Espacement interne */
+  border-radius: 10px; /* Bords arrondis */
+  border: 1px solid #ddd; /* Bordure légère */
+  background-color: #f9f9f9; /* Couleur de fond légère */
+}
+
+/* Animation pour les champs de texte */
+input[type="text"], input[type="number"], textarea {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 10px; /* Espace entre les champs */
+}

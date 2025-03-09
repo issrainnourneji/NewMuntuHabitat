@@ -1,0 +1,22 @@
+.nav{
+  background-color: #4c8ec4;
+}
+.navbar-brand{
+  padding-bottom: 15px;
+  padding-top: 10px;
+  padding-left: 37px;
+  padding-right: 30px;
+}
+.nav-link{
+    color: white !important;
+}
+.fas {
+  color: white !important;
+}
+.form{
+color: white !important;
+
+}
+.item{
+padding-right: 20px;
+}

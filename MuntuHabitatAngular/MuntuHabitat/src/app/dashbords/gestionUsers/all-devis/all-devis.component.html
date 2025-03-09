@@ -1,0 +1,151 @@
+<div *ngIf="devis && devis.length > 0;  loading" class="container my-4">
+  <h3 class="text-primary mb-4">Liste des Devis</h3>
+  <div class="list-group">
+
+    <div *ngFor="let devis of devis | paginate: { itemsPerPage: 5, currentPage: p }" class="list-group-item p-4 shadow-sm rounded mb-4">
+      <!-- Titre du devis -->
+
+      <h4
+        (click)="selectDevis(devis)"
+        class="contract-title cursor-pointer text-dark fw-bold d-flex justify-content-between align-items-center"
+      >
+        <span>Devis ID: {{ devis.devisId }}</span>
+        <span
+          class="badge"
+          [ngClass]="{
+            'bg-success': devis.isSigned,
+            'bg-warning text-dark': !devis.isSigned
+          }"
+        >
+          {{ devis.isSigned ? 'Signé' : 'Non signé' }}
+        </span>
+      </h4>
+
+      <!-- Détails du devis -->
+      <div *ngIf="selectedDevis === devis" class="mt-3">
+        <hr />
+
+        <div class="contract-container">
+          <!-- Informations principales -->
+          <div class="contract-info mb-4">
+            <h5 class="text-secondary">Détails du projet de chantier</h5>
+            <hr>
+            <div class="row">
+              <div class="col-md-6">
+                <p><strong>Objet :</strong> {{ devis.objet }}</p>
+                <p><strong>Adresse :</strong> {{ devis.adresse }}</p>
+                <p><strong>Standing :</strong> {{ devis.standing }}</p>
+              </div>
+              <div class="col-md-6">
+                <p><strong>Type de simulation :</strong> {{ devis.type }}</p>
+                <p><strong>Date de début :</strong> {{ devis.dateDebut }}</p>
+                <p><strong>Durée estimée :</strong> {{ devis.duree }}mois</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="company-details card shadow-sm mb-4">
+            <div class="card-body d-flex align-items-center">
+              <!-- Logo de l'entreprise -->
+              <div class="company-logo me-3">
+                <img src="../../../assets/MUNTU-Habitat-Logo-vertical.png" alt="Logo de l'entreprise" class="img-fluid" style="max-height: 100px;">
+              </div>
+
+              <!-- Section des détails -->
+              <div>
+                <h3 class="card-title">Détails de l'Entreprise</h3>
+                <p><strong>Nom de l'entreprise:</strong> Muntu Informatique</p>
+        <p><strong>Adresse:</strong> Tunis</p>
+        <p><strong>Email:</strong> contact&#64;muntuinformatique.com</p>
+        <p><strong>Téléphone:</strong> +33(0)253352278</p>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Détails des acteurs -->
+          <div class="row details-row mb-4">
+            <div class="col-md-6">
+              <h5 class="font-weight-semibold">Détails de l'Utilisateur</h5>
+              <p><strong>Nom :</strong> {{ devis.user.name }}</p>
+              <p><strong>Email :</strong> {{ devis.user.email }}</p>
+              <p><strong>Téléphone :</strong> {{ devis.user.phone }}</p>
+              <p><strong>Adresse :</strong> {{ devis.user.address }}</p>
+            </div>
+            <div class="col-md-6">
+              <h5 class="font-weight-semibold">Détails de l'Agent</h5>
+              <p><strong>Nom :</strong> {{ devis.agent.name }}</p>
+              <p><strong>Email :</strong> {{ devis.agent.email }}</p>
+              <p><strong>Téléphone :</strong> {{ devis.agent.phone }}</p>
+              <p><strong>Adresse :</strong> {{ devis.agent.address }}</p>
+            </div>
+          </div>
+
+          <!-- Table des prestations -->
+          <h5 class="mt-4 text-secondary">Détails des prestations</h5>
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover text-center align-middle">
+              <thead class="table-primary">
+                <tr>
+                  <th>Description</th>
+                  <th>Lot</th>
+                  <th>Prix unitaire</th>
+                  <th>Unité</th>
+                  <th>Quantité</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let prestation of devis.prestations">
+                  <td>{{ prestation.designation }}</td>
+                  <td>{{ prestation.lot }}</td>
+                  <td>{{ prestation.prixUnitaire | currency }}</td>
+                  <td>{{ prestation.unite }}</td>
+                  <td>{{ prestation.quantite }}</td>
+                  <td>{{ prestation.montantTotal | currency }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Récapitulatif financier avec infos à droite -->
+          <div class="mt-4 d-flex justify-content-end">
+            <div class="facture-summary text-end">
+              <p><strong>Sous-total :</strong> <span class="text">{{ devis.sousTotal | currency }}</span></p>
+              <p><strong>Taxes :</strong> <span class="text">{{ devis.taxe | currency }}</span></p>
+              <p class="font-weight-bold total"><strong>Total TTC :</strong> <span class="text">{{ devis.totalTTC | currency }}</span></p>
+            </div>
+
+          </div>
+
+          <div class="container mt-5">
+            <div class="row justify-content-center align-items-center text-center">
+              <!-- Signature de l'Entreprise -->
+              <div class="col-md-6 col-12  p-4 signature-block">
+                <p class="fw-bold mb-2">Signature de l'Entreprise:</p>
+                <h1 class=" fw-bold text-primary signature-font">Muntu Habitat</h1>
+              </div>
+
+              <!-- Signature de l'Utilisateur -->
+              <div class="col-md-6 col-12  p-4 signature-block" >
+                <p class="fw-bold mb-2">Signature de l'Utilisateur:</p>
+                <p class="user-signature text-secondary" *ngIf="devis.isSigned">
+                  {{ devis.user.name }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+<notification></notification>
+  <!-- Template de chargement -->
+  <ng-template #loading>
+    <div class="d-flex justify-content-center align-items-center vh-100">
+      <p class="text-secondary">Chargement des devis...</p>
+    </div>
+  </ng-template>
+</div>
+

@@ -1,0 +1,93 @@
+.company-logo img {
+  max-width: 200px; /* Largeur maximale du logo */
+  max-height: 200px; /* Hauteur maximale du logo */
+  object-fit: contain;
+  margin: 20px; /* Garde les proportions de l'image */
+}
+
+@media (max-width: 768px) {
+  .company-details .card-body {
+    flex-direction: column; /* Empile le contenu en colonnes sur les petits écrans */
+    align-items: center;
+    text-align: center;
+  }
+
+  .company-logo {
+    margin-bottom: 1rem;
+    /* Espace entre le logo et les détails */
+  }
+}
+.contract-title {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.text-primary {
+  color: #007bff !important;
+}
+
+.card {
+  border-radius: 12px;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.list-group-item {
+  transition: box-shadow 0.3s;
+}
+
+.list-group-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.signature-line {
+  height: 1px;
+  background: black;
+}
+/* Conteneur des signatures */
+.signature-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 150px;
+}
+
+.signature-font {
+  font-family: 'Georgia', serif; /* Police élégante pour l'entreprise */
+  letter-spacing: 1.5px;
+}
+
+.user-signature {
+  font-family: 'Dancing Script', cursive; /* Style manuscrit pour l'utilisateur */
+  font-size: 1.5rem;
+  color: #4c8ec4; /* Bleu clair pour la signature de l'utilisateur */
+  border-bottom: 1px solid #ccc; /* Ligne sous la signature pour un effet réaliste */
+  width: auto;
+  display: inline-block;
+}
+
+/* Arrière-plan avec dégradé */
+.bg-light {
+  background: linear-gradient(135deg, #efefef, #ffffff); /* Dégradé subtil */
+}
+
+/* Couleurs */
+.text-primary {
+  color: #193152; /* Bleu foncé */
+}
+
+.text-secondary {
+  color: #4c8ec4; /* Bleu clair */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .signature-block {
+    margin-bottom: 30px; /* Espacement entre les signatures sur petits écrans */
+  }
+}
+

@@ -1,0 +1,47 @@
+/* Style général pour le tableau */
+.table {
+  background-color: #ffffff;
+}
+
+.table th {
+  background-color: #4c8ec4;
+  color: white;
+  font-weight: bold;
+}
+
+.table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.btn {
+  margin-right: 5px;
+}
+
+/* Amélioration des boutons avec des icônes */
+.btn i {
+  margin-right: 5px;
+}
+
+.text-primary {
+  color: #4c8ec4;
+}
+
+/* Ajout d'un padding pour les entrées de formulaire dans le tableau */
+input.form-control {
+  margin-bottom: 10px;
+}
+
+/* Optimisation responsive */
+@media (max-width: 768px) {
+  .table th, .table td {
+    font-size: 14px;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+  }
+}

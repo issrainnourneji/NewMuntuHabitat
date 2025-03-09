@@ -1,0 +1,104 @@
+/* Conteneur général pour les utilisateurs */
+.users-container,
+.agent-container {
+  background-color: #ffffff; /* Fond blanc pour une apparence propre */
+  border-radius: 10px; /* Coins arrondis */
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+
+/* Titres */
+.users-container h3,
+.agent-container h3 {
+  color: #193152; /* Couleur principale */
+  font-size: 24px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Liste des utilisateurs */
+.user-list {
+  list-style-type: none; /* Supprime les puces */
+  padding: 0;
+  margin: 0;
+}
+
+.user-item {
+  display: flex;
+  flex-direction: column; /* Alignement vertical */
+  align-items: flex-start; /* Alignement à gauche */
+  gap: 5px; /* Espacement entre les éléments */
+  padding: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #efefef;
+  font-size: 16px;
+  color: #34495e;
+}
+
+.agent-info {
+  display: flex;
+  flex-direction: column; /* Alignement vertical */
+  align-items: flex-start; /* Alignement à gauche */
+  gap: 5px; /* Espacement entre les éléments */
+  font-size: 18px;
+  color: #34495e;
+  line-height: 1.5;
+}
+
+
+.user-item:last-child {
+  border-bottom: none; /* Supprime la bordure du dernier élément */
+}
+
+/* Informations des utilisateurs */
+.user-name {
+  font-weight: bold;
+  color: #3e7ed7; /* Couleur vive pour les noms */
+}
+
+.user-email {
+  color: #7f8c8d; /* Couleur douce pour les emails */
+}
+
+.user-phone {
+  color: #2c3e50; /* Couleur sobre pour les numéros de téléphone */
+}
+
+
+
+.agent-name {
+  font-weight: bold;
+  color: #3e7ed7;
+}
+
+.agent-email {
+  color: #7f8c8d;
+}
+
+.agent-phone {
+  color: #2c3e50;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .user-item {
+    flex-direction: column; /* Les éléments s'alignent verticalement */
+    align-items: flex-start;
+  }
+
+  .user-name,
+  .user-email,
+  .user-phone,
+  .agent-name,
+  .agent-email,
+  .agent-phone {
+    font-size: 14px;
+  }
+
+  .users-container h3,
+  .agent-container h3 {
+    font-size: 20px;
+  }
+}

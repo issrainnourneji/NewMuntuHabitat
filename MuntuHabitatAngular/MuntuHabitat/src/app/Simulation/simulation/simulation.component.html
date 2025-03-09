@@ -1,0 +1,65 @@
+<app-header-home></app-header-home>
+<router-outlet></router-outlet>
+<app-footer></app-footer>
+
+<!-- <div class="container mt-5">
+  <div class="simulation-section">
+    <h3>Votre simulation</h3>
+    <div class="progress mb-4">
+      <div
+        class="progress-bar"
+        role="progressbar"
+        [style.width.%]="(currentQuestion + 1) / questions.length * 100"
+        [attr.aria-valuenow]="currentQuestion + 1"
+        aria-valuemin="0"
+        [attr.aria-valuemax]="questions.length">
+      </div>
+    </div>
+    <div *ngIf="!showForm && !showResult">
+      <h2 class="text-center">Sélectionner selon vos besoins</h2>
+      <div *ngFor="let question of questions; let i = index" [ngClass]="{'d-none': i !== currentQuestion}">
+        <h4>{{ i + 1 }}. {{ question.text }}</h4>
+        <div class="form-check" *ngFor="let answer of question.categories; let j = index">
+          <input class="form-check-input" type="radio" name="question{{i}}" (click)="selectAnswer(i, j)">
+          <label class="form-check-label">{{ answer.content }}</label>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between mt-4">
+        <button *ngIf="currentQuestion > 0" class="btn btn-secondary" (click)="previousQuestion()">Précédent</button>
+        <button *ngIf="currentQuestion < questions.length - 1" class="btn btn-primary" (click)="nextQuestion()">Suivant</button>
+        <button *ngIf="currentQuestion === questions.length - 1" class="btn btn-success" (click)="submitSimulation()">Soumettre</button>
+      </div>
+    </div>
+
+    <div *ngIf="showForm">
+      <h2 class="text-center">Informations personnelles</h2>
+      <form [formGroup]="personalInfoForm" (ngSubmit)="submitPersonalInfo()" class="mt-4">
+        <div class="mb-3">
+          <label for="firstName" class="form-label">Prénom</label>
+          <input [(ngModel)]="registerRequest.firstname" type="text" id="firstName" class="form-control" formControlName="firstName">
+        </div>
+        <div class="mb-3">
+          <label for="lastName" class="form-label">Nom</label>
+          <input [(ngModel)]="registerRequest.lastname" type="text" id="lastName" class="form-control" formControlName="lastName">
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input [(ngModel)]="registerRequest.email" type="email" id="email" class="form-control" formControlName="email">
+        </div>
+        <div class="mb-3">
+          <label for="phone" class="form-label">Téléphone</label>
+          <input [(ngModel)]="registerRequest.password" type="text" id="phone" class="form-control" formControlName="phone">
+        </div>
+        <button type="submit" class="btn btn-primary">Soumettre</button>
+      </form>
+    </div>
+
+    <div *ngIf="showResult" class="mt-5">
+      <div class="result-section">
+        <h5>Résultat de la simulation</h5>
+        <p>Votre score total est : {{ totalScore }}$</p>
+        <p>Le résultat a été envoyé à votre email et téléphone.</p>
+      </div>
+    </div>
+  </div>
+</div> -->

@@ -1,0 +1,84 @@
+<div *ngIf="isLoading" class="loading-spinner">
+  <p>Chargement...</p>
+</div>
+
+<div *ngIf="error" class="error-message">
+  <p>{{ error }}</p>
+</div>
+
+<div *ngIf="userDetails && contrats.length > 0" class="contract-container">
+
+  <div *ngFor="let contrat of contrats" class="contract-item" [id]="'contrat-' + contrat.id">
+    <h3 class="contract-title">Contrat : {{contrat.id}} - {{ contrat.isSigned ? 'Signé' : 'Non signé' }}</h3>
+
+    <h3 class="contract-title">Contrats de l'utilisateur</h3>
+
+    <div class="contract-header">
+
+      <div class="logo">
+        <img src="../../../assets/MUNTU-Habitat-Logo-vertical.png" alt="Logo Muntu" />
+      </div>
+      <div class="company-details">
+        <h5>Détails de l'Entreprise</h5>
+        <p><strong>Nom de l'entreprise:</strong> Muntu Informatique</p>
+        <p><strong>Adresse:</strong> Tunis</p>
+        <p><strong>Email:</strong> contact&#64;muntuinformatique.com</p>
+        <p><strong>Téléphone:</strong> +33(0)253352278</p>
+      </div>
+    </div>
+
+    <div class="details-grid">
+      <div class="agent-details">
+        <h4>Détails de l'Agent</h4>
+        <p><strong>Nom:</strong> {{ agentDetails.name }}</p>
+        <p><strong>Email:</strong> {{ agentDetails.email }}</p>
+        <p><strong>Téléphone:</strong> {{ agentDetails.phone }}</p>
+        <p><strong>Adresse:</strong> {{ agentDetails.address }}</p>
+      </div>
+
+      <div class="user-details">
+        <h4>Détails de l'utilisateur</h4>
+        <p><strong>Nom:</strong> {{ userDetails.name }}</p>
+        <p><strong>Email:</strong> {{ userDetails.email }}</p>
+        <p><strong>Téléphone:</strong> {{ userDetails.phone }}</p>
+        <p><strong>Adresse:</strong> {{ userDetails.address }}</p>
+      </div>
+    </div>
+
+    <h4>Articles</h4>
+    <ul>
+      <li>
+        <strong>Article 1 : Objet du contrat</strong>
+        <p>Le présent contrat a pour objet la fourniture d'une solution numérique permettant de suivre en temps réel les travaux de chantier, incluant l'assignation des tâches, la gestion des ressources et le reporting des progrès.</p>
+      </li>
+      <li>
+        <strong>Article 2 : Obligations du maître d'ouvrage</strong>
+        <p>Le maître d'ouvrage s'engage à fournir à l'entreprise prestataire toutes les informations nécessaires pour l'intégration des données relatives au chantier dans la plateforme de suivi en ligne, ainsi qu'à désigner les personnes responsables de l'accès à la plateforme.</p>
+      </li>
+      <li>
+        <strong>Article 3 : Responsabilités de l'entreprise prestataire</strong>
+        <p>L'entreprise prestataire garantit la mise en place d'un système sécurisé, facile d'utilisation et adapté aux besoins spécifiques du chantier. Elle est responsable du bon fonctionnement de la plateforme et de la mise à jour continue des informations.</p>
+      </li>
+      <li>
+        <strong>Article 4 : Modalités d'accès à la plateforme</strong>
+        <p>Les accès à la plateforme seront fournis par l'entreprise prestataire aux utilisateurs autorisés. L'utilisation des identifiants et mots de passe est sous la responsabilité de l'utilisateur, qui doit les garder confidentiels.</p>
+      </li>
+      <li>
+        <strong>Article 5 : Suivi et reporting</strong>
+        <p>La plateforme permettra un suivi en temps réel des travaux avec des rapports hebdomadaires envoyés au maître d'ouvrage. Ce suivi comprendra l'avancement des travaux, les éventuels problèmes rencontrés et les actions correctives mises en place.</p>
+      </li>
+    </ul>
+
+
+    <div class="signature-section">
+      <h5>Signature</h5>
+
+      <p class="signature" *ngIf="!contrat.isSigned" (click)="confirmDelete(contrat.id)">Signer ici</p>
+      <p class="signature" *ngIf="contrat.isSigned">{{ userDetails?.name }}</p>
+    </div>
+  </div>
+
+  <button class="download-btn" (click)="downloadAllPdf()">Télécharger tous les PDF</button>
+</div>
+<modal-delete-confirmation [modalParams]="params" (onSubmitModal)="addSignature()"></modal-delete-confirmation>
+<notification></notification>

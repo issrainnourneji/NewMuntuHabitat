@@ -1,0 +1,113 @@
+<div *ngFor="let devis of deviss" class="container shadow p-4 mb-5 bg-white rounded">
+
+  <!-- Header du devis -->
+  <div class="row mb-4">
+    <div class="col-md-12 text-center">
+      <h3 class="devis-title mb-2 fw-bold text-primary">Devis ID: {{ devis.devisId }} - {{ devis.isSigned ? 'Signé' : 'Non signé' }}</h3>
+      <span class="badge" [ngClass]="{ 'badge-success': devis.isSigned, 'badge-warning': !devis.isSigned }">
+        {{ devis.isSigned ? 'Signé' : 'Non signé' }}
+      </span>
+    </div>
+  </div>
+
+  <div class="contract-container" id="devis-content-{{ devis.devisId }}">
+    <h2 class="text-center my-4 fw-bold text-secondary">Détails du Devis</h2>
+<hr>
+    <div class="contract-info">
+      <!-- Détails de l'Entreprise avec Logo -->
+      <div class="company-details mb-4">
+        <div class="company-logo mb-3 text-center">
+          <img src="../../../assets/MUNTU-Habitat-Logo-vertical.png" alt="Logo de l'entreprise" class="logo-image">
+        </div>
+        <div class="company-info text-center">
+          <h5 class="fw-bold text-dark">Détails de l'Entreprise</h5>
+          <p><strong>Nom de l'entreprise:</strong> Muntu Informatique</p>
+          <p><strong>Adresse:</strong> Tunis</p>
+          <p><strong>Email:</strong> contact&#64;muntuinformatique.com</p>
+          <p><strong>Téléphone:</strong> +33(0)253352278</p>
+        </div>
+      </div>
+
+      <h5 class="fw-bold text-dark mb-3">Détails du Chantier</h5>
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <p><strong>Objet :</strong> {{ devis.objet }}</p>
+          <p><strong>Adresse :</strong> {{ devis.adresse }}</p>
+          <p><strong>Standing :</strong> {{ devis.standing }}</p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Type de simulation :</strong> {{ devis.type }}</p>
+          <p><strong>Date de début :</strong> {{ devis.dateDebut }}</p>
+          <p><strong>Durée estimée :</strong> {{ devis.duree }} mois</p>
+        </div>
+      </div>
+
+      <!-- Détails Utilisateur et Agent alignés -->
+      <div class="details-container mb-4">
+        <div class="details-section">
+          <h5 class="fw-bold text-dark">Détails de l'Utilisateur</h5>
+          <p><strong>Nom:</strong> {{ devis.user.name }}</p>
+          <p><strong>Email:</strong> {{ devis.user.email }}</p>
+          <p><strong>Téléphone:</strong> {{ devis.user.phone }}</p>
+          <p><strong>Adresse:</strong> {{ devis.user.address }}</p>
+        </div>
+        <div class="details-section">
+          <h5 class="fw-bold text-dark">Détails de l'Agent</h5>
+          <p><strong>Nom:</strong> {{ devis.agent.name }}</p>
+          <p><strong>Email:</strong> {{ devis.agent.email }}</p>
+          <p><strong>Téléphone:</strong> {{ devis.agent.phone }}</p>
+          <p><strong>Adresse:</strong> {{ devis.agent.address }}</p>
+        </div>
+      </div>
+
+      <h5 class="fw-bold text-dark mb-3">Détails du Devis</h5>
+      <table class="table table-hover table-responsive mb-4">
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Lot</th>
+            <th>Prix unitaire</th>
+            <th>Unité</th>
+            <th>Quantité</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let prestation of devis.prestations">
+            <td>{{ prestation.designation }}</td>
+            <td>{{ prestation.lot }}</td>
+            <td>{{ prestation.prixUnitaire | currency }}</td>
+            <td>{{ prestation.unite }}</td>
+            <td>{{ prestation.quantite }}</td>
+            <td>{{ prestation.prixUnitaire * prestation.quantite | currency }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="devis-summary mb-4">
+        <p><strong>Sous-total :</strong> {{ devis.sousTotal | currency }}</p>
+        <p><strong>Taxes :</strong> {{ devis.taxe | currency }}</p>
+        <p class="total fw-bold"><strong>Total TTC :</strong> {{ devis.totalTTC | currency }}</p>
+      </div>
+
+      <div class="container mt-5">
+        <div class="row justify-content-center align-items-center text-center">
+          <div class="col-md-6 col-12 p-4 signature-block">
+            <p class="fw-bold mb-2">Signature de l'Entreprise:</p>
+            <h1 class="fw-bold text-primary signature-font">Muntu Habitat</h1>
+          </div>
+          <div class="col-md-6 col-12 p-4 signature-block">
+            <p class="fw-bold mb-2">Signature de l'Utilisateur:</p>
+            <div class="signature-section">
+              <p class="signature" *ngIf="!devis.isSigned" (click)="confirmDelete(devis.devisId)">Signer ici</p>
+              <p class="signature" *ngIf="devis.isSigned">{{ devis.user.name }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button (click)="downloadDevisPDF(devis)" class="btn btn-primary">Télécharger le devis en PDF</button>
+</div>
+<modal-delete-confirmation [modalParams]="params" (onSubmitModal)="addSignature()"></modal-delete-confirmation>
+<notification></notification>

@@ -1,0 +1,106 @@
+/* Styles for the quiz */
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+body {
+  background-color: #efefef;
+}
+
+.simulation-section {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.simulation-section h3 {
+  color: #193152;
+}
+
+.progress {
+  height: 20px;
+  background-color: #efefef;
+}
+
+.progress-bar {
+  background-color: #4c8ec4;
+}
+
+h2.text-center {
+  color: #193152;
+}
+
+.form-check-input:checked {
+  background-color: #193152;
+  border-color: #193152;
+}
+
+.form-check-label {
+  margin-left: 10px;
+}
+
+.d-flex .btn {
+  min-width: 100px;
+}
+
+.btn-primary {
+  background-color: #193152;
+  border-color: #193152;
+}
+
+.btn-primary:hover {
+  background-color: #4c8ec4;
+  border-color: #4c8ec4;
+}
+
+.btn-secondary {
+  background-color: #4c8ec4;
+  border-color: #4c8ec4;
+}
+
+.btn-secondary:hover {
+  background-color: #193152;
+  border-color: #193152;
+}
+
+.result-section {
+  border: 2px solid #193152;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+.result-section h5 {
+  color: #193152;
+}
+
+.result-section p {
+  color: #193152;
+}
+
+
+.form-check-input:checked + .form-check-label {
+  color: #4c8ec4;
+  font-weight: bold;
+}
+
+.btn-primary,
+.btn-success {
+  background-color: #4c8ec4;
+  border: none;
+}
+
+.btn-primary:hover,
+.btn-success:hover {
+  background-color: #25548a;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .form-check-label {
+    font-size: 0.9rem;
+  }
+}

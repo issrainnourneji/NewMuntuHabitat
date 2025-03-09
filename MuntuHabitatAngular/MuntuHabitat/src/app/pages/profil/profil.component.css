@@ -1,0 +1,53 @@
+.profile {
+  max-width: 600px;
+  margin: auto;
+  background-color: #f8f9fa; /* Light gray for a cleaner look */
+  border-radius: 10px;
+}
+
+h2 {
+  font-weight: bold;
+  color: #0d6efd;
+}
+
+button {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content {
+  border-radius: 10px;
+  overflow: hidden;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+.alert-danger {
+  font-weight: bold;
+}
+
+@keyframes fadeIn {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

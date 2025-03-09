@@ -1,0 +1,73 @@
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      <h3>Ajouter une nouvelle simulation</h3>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="addSimulationForm" (ngSubmit)="onSubmit()">
+        <div formArrayName="questions">
+          <div *ngFor="let question of questions.controls; let i = index" [formGroupName]="i">
+            <div class="card mt-3">
+              <div class="card-header">
+                <h5>Question {{ i + 1 }}</h5>
+              </div>
+              <div class="card-body">
+                <!-- Texte de la question -->
+                <div class="mb-3">
+                  <label for="questionText{{i}}" class="form-label">Texte de la question</label>
+                  <input type="text" id="questionText{{i}}" class="form-control" formControlName="text">
+                </div>
+
+                <!-- Type de simulation -->
+                <div class="mb-3">
+                  <label for="questionType{{i}}" class="form-label">Type de simulation</label>
+                  <select id="questionType{{i}}" class="form-control" formControlName="type">
+                    <option *ngFor="let type of simulationTypes" [value]="type">{{type}}</option>
+                  </select>
+                </div>
+
+                <!-- Catégories de réponses -->
+                <div formArrayName="categories">
+                  <div *ngFor="let category of categories(i).controls; let j = index" [formGroupName]="j">
+                    <div class="mb-3">
+                      <label for="categoryContent{{i}}{{j}}" class="form-label">Réponse {{ j + 1 }}</label>
+                      <input type="text" id="categoryContent{{i}}{{j}}" class="form-control" formControlName="content">
+                    </div>
+                    <div class="mb-3">
+                      <label for="categoryPrice{{i}}{{j}}" class="form-label">Prix</label>
+                      <input type="number" id="categoryPrice{{i}}{{j}}" class="form-control" formControlName="price">
+                    </div>
+                    <div class="mb-3">
+                      <label for="categoryTitle{{i}}{{j}}" class="form-label">Titre</label>
+                      <input type="text" id="categoryTitle{{i}}{{j}}" class="form-control" formControlName="title">
+                    </div>
+                    <div class="mb-3">
+                      <label for="categoryImage{{i}}{{j}}" class="form-label">Image</label>
+                      <input type="file" id="categoryImage{{i}}{{j}}" class="form-control" (change)="onFileChange($event, i, j)">
+                    </div>
+                    <div class="mb-3">
+                      <label for="categoryDescription{{i}}{{j}}" class="form-label">Description</label>
+                      <textarea id="categoryDescription{{i}}{{j}}" class="form-control" formControlName="description"></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label for="categoryDescriptionTitle{{i}}{{j}}" class="form-label">Titre de la description</label>
+                      <input type="text" id="categoryDescriptionTitle{{i}}{{j}}" class="form-control" formControlName="descriptionTitle">
+                    </div>
+                  </div>
+                  <!-- Bouton Ajouter une réponse -->
+                  <button type="button" class="btn btn-secondary" (click)="addCategory(i)">Ajouter une réponse</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Bouton Ajouter une question -->
+          <button type="button" class="btn btn-secondary mt-3" (click)="addQuestion()">Ajouter une question</button>
+        </div>
+        <!-- Bouton Soumettre -->
+        <button type="submit" class="btn btn-primary mt-4">Soumettre</button>
+      </form>
+    </div>
+  </div>
+</div>
+<notification
+></notification>

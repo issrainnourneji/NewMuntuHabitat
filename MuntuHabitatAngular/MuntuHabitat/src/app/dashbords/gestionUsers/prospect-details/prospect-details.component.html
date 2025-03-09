@@ -1,0 +1,122 @@
+<div class="container my-5">
+  <div *ngIf="contrats && contrats.length > 0; else loading">
+    <h3 class="text-center mb-4">Liste des Contrats</h3>
+    <div class="list-group">
+      <div *ngFor="let contrat of contrats | paginate: { itemsPerPage: 5, currentPage: p }" class="list-group-item mb-3 p-4 shadow-sm border rounded">
+        <h4
+          (click)="selectContrat(contrat)"
+          class="contract-title cursor-pointer text-primary d-flex justify-content-between align-items-center">
+          <span>Contrat ID: {{ contrat.contratId }}</span>
+          <span class="badge" [ngClass]="{'bg-success': contrat.isSigned, 'bg-danger': !contrat.isSigned}">
+            {{ contrat.isSigned ? 'Signé' : 'Non signé' }}
+          </span>
+        </h4>
+
+        <div *ngIf="selectedContrat === contrat" class="mt-3">
+          <hr>
+          <h5 class="text-muted">Détails du Contrat</h5>
+          <div class="row">
+            <div class="company-details card shadow-sm mb-4">
+              <div class="card-body d-flex align-items-center">
+                <div class="company-logo me-3">
+                  <img src="../../../assets/MUNTU-Habitat-Logo-vertical.png" alt="Logo de l'entreprise" class="img-fluid" style="max-height: 100px;">
+                </div>
+                <div>
+                  <h3 class="card-title">Détails de l'Entreprise</h3>
+                  <p><strong>Nom de l'entreprise:</strong> Muntu Informatique</p>
+        <p><strong>Adresse:</strong> Tunis</p>
+        <p><strong>Email:</strong> contact&#64;muntuinformatique.com</p>
+        <p><strong>Téléphone:</strong> +33(0)253352278</p>
+                </div>
+              </div>
+            </div>
+
+          <!-- Détails des acteurs -->
+          <div class="row details-row mb-4">
+            <div class="col-md-6">
+              <h5 class="font-weight-semibold">Détails de l'Utilisateur</h5>
+              <p><strong>Nom :</strong> {{ contrat.user.name }}</p>
+              <p><strong>Email :</strong> {{ contrat.user.email }}</p>
+              <p><strong>Téléphone :</strong> {{ contrat.user.phone }}</p>
+              <p><strong>Adresse :</strong> {{ contrat.user.address }}</p>
+            </div>
+            <div class="col-md-6">
+              <h5 class="font-weight-semibold">Détails de l'Agent</h5>
+              <p><strong>Nom :</strong> {{ contrat.agent.name }}</p>
+              <p><strong>Email :</strong> {{ contrat.agent.email }}</p>
+              <p><strong>Téléphone :</strong> {{ contrat.agent.phone }}</p>
+              <p><strong>Adresse :</strong> {{ contrat.agent.address }}</p>
+            </div>
+          </div>
+
+  <!-- Liste des articles avec descriptions -->
+  <div class="articles-section mb-4">
+    <h3 class="text-primary">Articles</h3>
+    <ul class="list-unstyled">
+        <li class="mb-3">
+            <h4>Article 1 : Objet du contrat</h4>
+            <p>Le présent contrat a pour objet la mise en place d'une plateforme en ligne permettant le suivi des travaux de chantier, incluant la planification des tâches, la gestion des intervenants et la communication entre les parties prenantes.</p>
+        </li>
+        <li class="mb-3">
+            <h4>Article 2 : Responsabilités des parties</h4>
+            <p>Le maître d'ouvrage s'engage à fournir toutes les informations nécessaires à la mise en place du suivi du chantier. L'entreprise prestataire garantit l'accès sécurisé à la plateforme et assure le bon fonctionnement des outils de suivi.</p>
+        </li>
+        <li class="mb-3">
+            <h4>Article 3 : Modalités d'accès et d'utilisation</h4>
+            <p>L'accès à la plateforme est réservé aux parties prenantes du chantier via des identifiants uniques. Toute utilisation frauduleuse ou abusive entraînera la suspension du compte concerné.</p>
+        </li>
+        <li class="mb-3">
+            <h4>Article 4 : Suivi et reporting</h4>
+            <p>Un rapport hebdomadaire sera généré automatiquement et partagé avec le maître d'ouvrage. Il inclura l’avancement des travaux, les incidents signalés et les délais de livraison prévisionnels.</p>
+        </li>
+        <li class="mb-3">
+            <h4>Article 5 : Conditions financières</h4>
+            <p>Le paiement des services de suivi de chantier en ligne s’effectuera en plusieurs échéances selon l’avancement des travaux. Les retards de paiement donneront lieu à des pénalités définies dans le contrat.</p>
+        </li>
+        <li class="mb-3">
+            <h4>Article 6 : Confidentialité et protection des données</h4>
+            <p>Toutes les données échangées sur la plateforme sont confidentielles. L’entreprise prestataire s’engage à respecter la réglementation en vigueur sur la protection des données.</p>
+        </li>
+        <li class="mb-3">
+            <h4>Article 7 : Durée et résiliation</h4>
+            <p>Le contrat est conclu pour une durée de [X] mois et peut être renouvelé ou résilié selon les modalités définies. En cas de manquement grave à ses obligations, l'une des parties peut mettre fin au contrat après un préavis de [X] jours.</p>
+        </li>
+    </ul>
+</div>
+
+
+  <div class="container mt-5">
+    <div class="row justify-content-center align-items-center text-center">
+      <!-- Signature de l'Entreprise -->
+      <div class="col-md-6 col-12  p-4 signature-block">
+        <p class="fw-bold mb-2">Signature de l'Entreprise:</p>
+        <h1 class=" fw-bold text-primary signature-font">Muntu Habitat</h1>
+      </div>
+
+      <!-- Signature de l'Utilisateur -->
+      <div class="col-md-6 col-12  p-4 signature-block" >
+        <p class="fw-bold mb-2">Signature de l'Utilisateur:</p>
+        <p class="user-signature text-secondary" *ngIf="contrat.isSigned">
+          {{ contrat.user.name }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+  <ng-template #loading>
+    <div class="text-center my-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Chargement...</span>
+      </div>
+      <p class="mt-3">Chargement des contrats...</p>
+    </div>
+  </ng-template>
+</div>

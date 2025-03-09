@@ -1,0 +1,19 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12 mb-4" *ngFor="let post of posts | paginate: { itemsPerPage: 5, currentPage: p }">
+      <div class="card shadow-sm">
+        <img [src]="'http://localhost:8080/' + post.imageUrl" alt="Post Image" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <p class="card-text">{{ post.description }}</p>
+        </div>
+        <button class="btn btn-link" (click)="toggleLike(post)">
+          <span [class.filled]="post.isLiked" class="heart"></span>
+        </button>
+            </div>
+    </div>
+  </div>
+  <div class="pagination-container text-center">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>

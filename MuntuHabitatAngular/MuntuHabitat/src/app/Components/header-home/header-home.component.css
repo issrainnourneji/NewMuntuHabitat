@@ -1,0 +1,97 @@
+
+.navbar-nav .nav-link {
+  color: #7a7676;
+  transition: color 0.3s;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #193152;
+}
+
+
+.btn-link {
+  color: #000;
+  text-decoration: none;
+}
+
+.btn-link:hover {
+  color: #19315264;
+  text-decoration: none;
+}
+.icon {
+  color: #acb4bb;
+}
+.custom-icon {
+  font-size: 2.5em;
+}
+
+.btn-simulation {
+  margin-right: 70px;
+  margin-top: 5px;
+  background: linear-gradient(50deg, #193152 , #4c8ec4);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.btn-simulation:hover {
+  background: linear-gradient(45deg, #4c8ec4, #efefef);
+}
+
+
+
+
+.nav-item:hover .dropdown-menu {
+  display: block;
+  position: absolute;
+  z-index: 1000;
+  border-top: none;
+  margin-left: 10px;
+}
+.dropdown-menu a {
+  text-decoration: none;
+  color: #333;
+}
+.dropdown-menu a:hover {
+  text-decoration: underline;
+}
+.dropdown-menu {
+  display: none;
+  width:700px;
+  color: #efefef;
+}
+
+
+
+
+.dropdown-menu {
+  background-color: #efefef;
+  border: none;
+  padding: 0.5rem;
+}
+.dropdown-item {
+  color: #193152;
+  font-size: medium;
+}
+.dropdown-item:hover {
+  background-color: #4c8ec4;
+  color: white;
+}
+.dropdown-header {
+  font-weight: bold;
+  color: #193152;
+  margin-bottom: 0.5rem;
+  font-size: medium;
+}
+hr {
+  border-top: 2px solid white;
+}
+.color{
+  color: transparent;
+}
+

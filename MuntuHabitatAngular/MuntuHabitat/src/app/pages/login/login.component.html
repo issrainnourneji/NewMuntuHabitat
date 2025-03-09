@@ -1,0 +1,35 @@
+<div>
+  <h2>Login</h2>
+  <p class="message" *ngIf="message">{{ message }}</p>
+  <form (ngSubmit)="handleSubmit()">
+
+    <label>Email: </label>
+    <input type="email" name="email" [(ngModel)]="formData.email" required #email="ngModel" email>
+    <small class="error" *ngIf="email.invalid && email.touched">
+      Email is required and must be a valid email
+    </small>
+
+    <label>Password: </label>
+    <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'" (click)="togglePasswordVisibility()"></i>
+  <input
+    [type]="showPassword ? 'text' : 'password'"
+    name="password"
+    [(ngModel)]="formData.password"
+    required minlength="8"
+    #password="ngModel">
+<small class="error" *ngIf="password.invalid && password.touched">
+  Password is required and must be at least 8 characters long
+</small>
+
+
+    <button type="submit" [disabled]="email.invalid || password.invalid">Login</button>
+
+    <p class="register-link">
+      Don't have an account?
+      <a routerLink="/register">Register</a>
+    </p>
+    <p class="forgot-password-link">
+      <a routerLink="/forgot-password">Forgot Password?</a>
+    </p>
+  </form>
+</div>

@@ -1,0 +1,51 @@
+<form [formGroup]="reactiveForm" (ngSubmit)="add()" class="form-container">
+  <h2 class="form-title">Ajouter une Prestation</h2>
+
+  <div class="form-group">
+    <label for="designation">Désignation</label>
+    <input type="text" formControlName="designation" class="form-control" id="designation" placeholder="Entrez la désignation">
+    <div class="error-message" *ngIf="designation?.errors?.['required'] && designation?.touched">
+      La désignation est requise
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="lot">Lot</label>
+    <select formControlName="lot" class="form-control" id="lot">
+      <option value="" disabled selected>Choisir un lot</option>
+      <option *ngFor="let lot of lots" [value]="lot">{{ lot }}</option>
+    </select>
+    <div class="error-message" *ngIf="lot?.errors?.['required'] && lot?.touched">
+      Le lot est requis
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="prixFourniture">Prix fourniture</label>
+    <input type="number" formControlName="prixFourniture" class="form-control" id="prixFourniture" placeholder="Entrez le prix de fourniture">
+    <div class="error-message" *ngIf="prixFourniture?.errors?.['required'] && prixFourniture?.touched">
+      Le prix de fourniture est requis
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="prixUnitaire">Prix Unitaire</label>
+    <input type="number" formControlName="prixUnitaire" class="form-control" id="prixUnitaire" placeholder="Entrez le prix unitaire">
+    <div class="error-message" *ngIf="prixUnitaire?.errors?.['required'] && prixUnitaire?.touched">
+      Le prix unitaire est requis
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="unite">Unite</label>
+    <select formControlName="unite" class="form-control" id="unite">
+      <option value="" disabled selected>Choisir un unite</option>
+      <option *ngFor="let unite of unites" [value]="unite">{{ unite }}</option>
+    </select>
+    <div class="error-message" *ngIf="unite?.errors?.['required'] && unite?.touched">
+      Le unite est requis
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Ajouter</button>
+</form>

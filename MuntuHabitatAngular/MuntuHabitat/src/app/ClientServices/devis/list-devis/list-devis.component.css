@@ -1,0 +1,79 @@
+.details-container {
+  display: flex;
+  justify-content: space-between; /* Sépare les sections avec un espace */
+  align-items: flex-start; /* Aligne les sections en haut */
+  gap: 20px; /* Espace entre les colonnes */
+}
+
+.details-section {
+  width: 48%; /* Les deux colonnes occupent la même largeur */
+  padding: 10px;
+  border: 1px solid #ccc; /* Optionnel : Ajoute une bordure pour délimiter les sections */
+  border-radius: 5px; /* Coins arrondis */
+  background-color: #f9f9f9; /* Couleur de fond douce */
+}
+
+.details-section h5 {
+  margin-bottom: 10px;
+  color: #193152; /* Couleur de titre */
+}
+.company-details {
+  display: flex;
+  align-items: center; /* Aligne le logo et les détails verticalement */
+  gap: 20px; /* Espace entre le logo et les détails */
+  padding: 10px;
+  border: 1px solid #ccc; /* Optionnel : Bordure autour des détails de l'entreprise */
+  border-radius: 5px; /* Coins arrondis */
+  background-color: #f9f9f9; /* Couleur de fond douce */
+  margin-bottom: 20px; /* Espace sous la section */
+}
+
+.company-logo {
+  flex-shrink: 0; /* Empêche le logo de se réduire */
+}
+
+.logo-image {
+  width: 250px; /* Largeur du logo */
+  height: auto; /* Garde les proportions du logo */
+  margin: 50px; /* Coins arrondis pour le logo (optionnel) */
+}
+
+.company-info {
+  flex: 1; /* Permet aux détails de prendre l'espace disponible */
+}
+.devis-summary {
+  text-align: right; /* Aligne le texte à droite */
+}
+.signature {
+  font-family: 'Pacifico', cursive;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+
+}
+.signature-line {
+  height: 1px;
+  background: black;
+}
+/* Conteneur des signatures */
+.signature-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 150px;
+}
+
+.signature-font {
+  font-family: 'Georgia', serif; /* Police élégante pour l'entreprise */
+  letter-spacing: 1.5px;
+}
+
+.user-signature {
+  font-family: 'Dancing Script', cursive; /* Style manuscrit pour l'utilisateur */
+  font-size: 1.5rem;
+  color: #4c8ec4; /* Bleu clair pour la signature de l'utilisateur */
+  border-bottom: 1px solid #ccc; /* Ligne sous la signature pour un effet réaliste */
+  width: auto;
+  display: inline-block;
+}

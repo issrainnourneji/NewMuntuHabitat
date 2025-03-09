@@ -1,0 +1,42 @@
+<div>
+  <h2>Register</h2>
+    <p class="message" *ngIf="message">{{ message }}</p>
+
+    <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
+        <label>Email:</label>
+        <input type="email" formControlName="email">
+        <small class="error" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+            Email invalide
+        </small>
+
+        <label>Name: </label>
+        <input type="text" formControlName="name">
+        <small class="error" *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched">
+            Name is required
+        </small>
+
+        <label>PhoneNumber: </label>
+        <input type="text" formControlName="phoneNumber">
+        <small class="error" *ngIf="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched">
+            Phone number entre 8 et 10 chiffres
+        </small>
+
+        <label>Addresse: </label>
+        <input type="text" formControlName="address">
+        <small class="error" *ngIf="registerForm.get('address')?.invalid && registerForm.get('address')?.touched">
+            Adresse requise
+        </small>
+
+        <label>Password: </label>
+        <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'" (click)="togglePasswordVisibility()"></i>
+          <input [type]="showPassword ? 'text' : 'password'" formControlName="password" class="password-input">
+          <small class="error" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+          Mot de passe de 8 caractères minimum
+        </small>
+        <button type="submit" [disabled]="registerForm.invalid">Register</button>
+      <p class="register-link">
+          Already have an account?
+          <a routerLink="/login">Login</a>
+      </p>
+    </form>
+  </div>

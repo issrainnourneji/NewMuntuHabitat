@@ -1,0 +1,104 @@
+<div class="facture-container container my-4">
+  <h2 class="text-center">Créer une Facture</h2>
+
+<!-- Détails de l'entreprise -->
+<!-- Détails de l'entreprise -->
+<div class="company-details card shadow-sm mb-4">
+  <div class="card-body d-flex align-items-center">
+    <!-- Logo de l'entreprise -->
+    <div class="company-logo me-3">
+      <img src="../../../assets/MUNTU-Habitat-Logo-vertical.png" alt="Logo de l'entreprise" class="img-fluid" style="max-height: 100px;">
+    </div>
+
+    <!-- Section des détails -->
+    <div>
+      <h3 class="card-title">Détails de l'Entreprise</h3>
+      <p><strong>Nom de l'entreprise:</strong> Muntu Informatique</p>
+      <p><strong>Adresse:</strong> Tunis</p>
+      <p><strong>Email:</strong> contact&#64;muntuinformatique.com</p>
+      <p><strong>Téléphone:</strong> +33(0)253352278</p>
+    </div>
+  </div>
+</div>
+
+
+
+  <!-- Formulaire de création de facture -->
+  <div class="contract-form mb-4">
+    <div class="mb-3">
+      <label for="userId" class="form-label">Sélectionnez l'Utilisateur</label>
+      <select id="userId" [(ngModel)]="userId" class="form-select">
+        <option *ngFor="let user of users" [value]="user.id">
+          {{ user.name }} ({{ user.email }})
+        </option>
+      </select>
+    </div>
+
+    <!-- Liste des prestations -->
+    <div class="prestations-section">
+      <h4>Prestations disponibles</h4>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead class="table-light">
+            <tr>
+              <th style="width: 5%">Sélection</th>
+              <th style="width: 35%">Désignation</th>
+              <th style="width: 15%">Prix unitaire</th>
+              <th style="width: 20%">Quantité</th>
+              <th style="width: 25%">Montant total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let prestation of prestations | paginate: { itemsPerPage: 5, currentPage: p }">
+              <td>
+                <input
+                  type="checkbox"
+                  [checked]="selectedPrestations.has(prestation.id!)"
+                  (change)="togglePrestation(prestation)"
+                  class="form-check-input">
+              </td>
+              <td>{{prestation.designation}}</td>
+              <td>{{prestation.prixUnitaire | currency:'EUR'}}</td>
+              <td>
+                <input
+                  *ngIf="selectedPrestations.has(prestation.id!)"
+                  type="number"
+                  min="1"
+                  class="form-control form-control-sm"
+                  [value]="selectedPrestations.get(prestation.id!)?.quantite"
+                  (input)="updateQuantite(prestation.id!, $any($event.target).value)"
+                  [disabled]="!selectedPrestations.has(prestation.id!)">
+              </td>
+              <td>
+                <span *ngIf="selectedPrestations.has(prestation.id!)">
+                  {{selectedPrestations.get(prestation.id!)?.montantTotal | currency:'EUR'}}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+    <!-- Boutons d'action -->
+    <div class="d-flex justify-content-end">
+      <button
+        class="btn btn-outline-secondary me-2"
+        type="button"
+        (click)="reset()">
+        Réinitialiser
+      </button>
+      <div class="total-section">
+        <p><strong>Sous-total :</strong> {{ getTotalGeneral() | currency:'EUR' }}</p>
+        <button
+            [disabled]="!isFormValid()"
+            (click)="createFacture()"
+            class="btn btn-primary">
+            Créer la Facture
+        </button>
+        <notification></notification>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+<div class="container">
+  <h2>Liste des prospects</h2>
+
+  <!-- Make the table responsive -->
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Email</th>
+          <th>Téléphone</th>
+          <th>Adresse</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let prospect of users | paginate: { itemsPerPage: 6, currentPage: p}" (click)="selectProspect(prospect)">
+          <td>{{ prospect.id }}</td>
+          <td>{{ prospect.name }}</td>
+          <td>{{ prospect.email }}</td>
+          <td>{{ prospect.phoneNumber }}</td>
+          <td>{{ prospect.address }}</td>
+          <td><button class="btn btn-info">Voir Sélections</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="selectedProspect" class="prospect-details">
+    <div class="container py-4">
+      <h3 class="text-center mb-4">Détails de la sélection de {{ selectedProspect.name }}</h3>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <p><strong>Rôle:</strong> {{ selectedProspect.prospectSelection?.role }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <p><strong>Type de propriété:</strong> {{ selectedProspect.prospectSelection?.propertyType }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <p><strong>Type de travaux:</strong> {{ selectedProspect.prospectSelection?.workType }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <p><strong>Budget:</strong> {{ selectedProspect.prospectSelection?.budget }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination controls -->
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

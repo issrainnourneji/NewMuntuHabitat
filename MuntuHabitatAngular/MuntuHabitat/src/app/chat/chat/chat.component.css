@@ -1,0 +1,69 @@
+/* Dans posts-list.component.css */
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  background-color: #f8f9fa;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #555;
+}
+
+.btn-primary {
+  background-color: #193152;
+  border-color: #193152;
+}
+
+.btn-primary:hover {
+  background-color: #4c8ec4;
+  border-color: #4c8ec4;
+}
+.image-container {
+  position: relative;
+  text-align: center;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  filter: brightness(0.7);
+
+}
+
+.centered-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: bold;
+  padding-bottom: 50px;
+}
+
+.bg-dark {
+  background-color: #343a40 !important;
+}
+
+.nav-link {
+  color: white !important;
+}
+
+.nav-link:hover {
+  color: #adb5bd !important;
+}

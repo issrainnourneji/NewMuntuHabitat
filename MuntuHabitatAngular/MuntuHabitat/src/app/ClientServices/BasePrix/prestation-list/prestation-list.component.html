@@ -1,0 +1,46 @@
+<div class="col-12">
+  <div class="bg-light rounded h-100 p-4 shadow-sm form-container">
+    <h4 class="mb-4 text-center ">Table des Prix de Prestation</h4>
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Désignation</th>
+            <th scope="col">Lot</th>
+            <th scope="col">Prix Fourniture</th>
+            <th scope="col">Prix Unitaire</th>
+            <th scope="col">Unité</th>
+            <th scope="col" class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr role="row" class="odd" *ngFor="let l of list | paginate: { itemsPerPage: 5, currentPage: p }">
+            <td>{{ l.designation }}</td>
+            <td>{{ l.lot }}</td>
+            <td>{{ l.prixFourniture }}</td>
+            <td>{{ l.prixUnitaire }}</td>
+            <td>{{ l.unite }}</td>
+            <td class="text-center">
+              <button type="button" class="btn btn-info" (click)="onEditPrestation(l.id)">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button type="button" class="btn btn-danger me-2" (click)="confirmDelete(l.id)">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="pagination-container text-center">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+    <button type="button" class="btn btn-info mt-3" (click)="ajouterPrestation()">
+      <i class="fas fa-plus-circle"></i> Ajouter Prestation
+    </button>
+
+  </div>
+  <modal-delete-confirmation [modalParams]="params" (onSubmitModal)="DeletePrestation()"></modal-delete-confirmation>
+<notification></notification>
+</div>

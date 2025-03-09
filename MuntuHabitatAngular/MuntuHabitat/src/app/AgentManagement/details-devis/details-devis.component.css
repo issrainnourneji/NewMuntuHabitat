@@ -1,0 +1,121 @@
+.contract-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.contract-info p {
+  margin-bottom: 0.5rem;
+}
+
+.details-row p {
+  margin-bottom: 0.3rem;
+}
+/* Table */
+.table {
+  margin-top: 20px;
+}
+
+.table thead th {
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+}
+
+.table tbody td {
+  text-align: center;
+}
+
+.contract-container {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.contract-info h5 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.contract-info p {
+  color: #555;
+}
+
+.company-logo img {
+  max-width: 200px; /* Largeur maximale du logo */
+  max-height: 200px; /* Hauteur maximale du logo */
+  object-fit: contain;
+  margin: 10px; /* Garde les proportions de l'image */
+}
+
+@media (max-width: 768px) {
+  .company-details .card-body {
+    flex-direction: column; /* Empile le contenu en colonnes sur les petits écrans */
+    align-items: center;
+    text-align: center;
+  }
+
+  .company-logo {
+    margin-bottom: 1rem;
+    /* Espace entre le logo et les détails */
+  }
+}
+/* Summary */
+.facture-summary p {
+  margin-bottom: 10px;
+}
+
+.facture-summary .total {
+  font-size: 1.2rem;
+}
+.signature-line {
+  height: 1px;
+  background: black;
+}
+/* Conteneur des signatures */
+.signature-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 150px;
+}
+
+.signature-font {
+  font-family: 'Georgia', serif; /* Police élégante pour l'entreprise */
+  letter-spacing: 1.5px;
+}
+
+.user-signature {
+  font-family: 'Dancing Script', cursive; /* Style manuscrit pour l'utilisateur */
+  font-size: 1.5rem;
+  color: #4c8ec4; /* Bleu clair pour la signature de l'utilisateur */
+  border-bottom: 1px solid #ccc; /* Ligne sous la signature pour un effet réaliste */
+  width: auto;
+  display: inline-block;
+}
+
+/* Arrière-plan avec dégradé */
+.bg-light {
+  background: linear-gradient(135deg, #efefef, #ffffff); /* Dégradé subtil */
+}
+
+/* Couleurs */
+.text-primary {
+  color: #193152; /* Bleu foncé */
+}
+
+.text-secondary {
+  color: #4c8ec4; /* Bleu clair */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .signature-block {
+    margin-bottom: 30px; /* Espacement entre les signatures sur petits écrans */
+  }
+}
+
+.btn[disabled] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}

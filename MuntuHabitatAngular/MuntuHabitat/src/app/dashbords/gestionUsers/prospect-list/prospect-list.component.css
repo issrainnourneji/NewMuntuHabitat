@@ -1,0 +1,115 @@
+.container {
+  background-color: #efefef;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+}
+
+h2 {
+  color: #3e7ed7;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.table {
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table th {
+  background-color: #193152;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.table td {
+  padding: 12px;
+  text-align: center;
+  color: #171f26;
+  font-size: 14px;
+  border-bottom: 1px solid #efefef;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+.alert {
+  font-size: 16px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.alert-info {
+  background-color: #e2e3e5;
+  color: #383d41;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 24px;
+  }
+
+  .table th,
+  .table td {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .container {
+    padding: 15px;
+  }
+}
+
+.prospect-list {
+  margin: 20px;
+}
+
+.prospect-details {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+
+.prospect-details h3 {
+  font-family: 'Arial', sans-serif;
+  font-size: 24px;
+  color: #2c3e50;
+}
+
+.card-body p {
+  font-size: 16px;
+  color: #34495e;
+  line-height: 1.5;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+@media (max-width: 576px) {
+  .prospect-details h3 {
+    font-size: 20px;
+  }
+
+  .card-body p {
+    font-size: 14px;
+  }
+}
+

@@ -1,0 +1,46 @@
+<div class="container">
+  <h2 class="text-center mb-4">Ajouter un Post</h2>
+
+  <!-- Formulaire de création de post -->
+  <form (ngSubmit)="addPost()">
+    <div class="mb-3">
+      <label for="userId" class="form-label">Sélectionnez l'Utilisateur</label>
+      <select id="userId" [(ngModel)]="userId" name="userId" class="form-select mb-3">
+        <option *ngFor="let user of users" [value]="user.id">
+          {{ user.email }}
+        </option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input type="text" id="title" [(ngModel)]="title" name="title" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea id="description" [(ngModel)]="description" name="description" class="form-control" rows="4"></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="image" class="form-label">Image</label>
+      <input type="file" id="image" (change)="onFileChange($event)" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Ajouter Post</button>
+  </form>
+</div>
+<notification></notification>
+<!-- Modal -->
+<div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="postModalLabel">Post Ajouté</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="reloadPage()"></button>
+      </div>
+      <div class="modal-body">
+        Le post a été ajouté avec succès !
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="reloadPage()">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>

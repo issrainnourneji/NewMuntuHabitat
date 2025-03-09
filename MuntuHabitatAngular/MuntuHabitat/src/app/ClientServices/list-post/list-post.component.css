@@ -1,0 +1,55 @@
+/* Style personnalisé pour les cartes de posts */
+.card {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;  /* L'image occupe toute la largeur de la carte */
+  height: auto;  /* Hauteur automatique pour garder les proportions de l'image */
+  object-fit: cover;  /* Recadrage de l'image pour s'assurer qu'elle couvre bien toute la zone */
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #193152;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #777;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
+}
+
+.card-shadow-sm {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+.card-body {
+  position: relative;
+}
+.heart {
+  font-size: 2rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.heart::before {
+  content: '\2661'; /* Cœur vide */
+  color: #ccc; /* Couleur du cœur vide */
+}
+
+.heart.filled::before {
+  content: '\2665'; /* Cœur plein */
+  color: #3d70dd; /* Couleur du cœur plein */
+}
+
+

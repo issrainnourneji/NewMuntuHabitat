@@ -1,0 +1,37 @@
+<div class="bg-white p-6 rounded-lg shadow-lg">
+  <h3 class="text-xl font-bold mb-4">Paiement de la facture </h3>
+
+  <div *ngIf="success" class="mb-4 p-4 bg-green-100 text-green-700 rounded">
+    Paiement effectué avec succès!
+  </div>
+
+  <div *ngIf="error" class="mb-4 p-4 bg-red-100 text-red-700 rounded">
+    {{error}}
+  </div>
+
+  <form [formGroup]="paiementForm" (ngSubmit)="effectuerPaiement()" class="space-y-4">
+    <div>
+      <label class="block mb-2">Méthode de paiement</label>
+      <select formControlName="methodePaiement"
+              class="w-full p-2 border rounded">
+        <option value="">Sélectionnez une méthode</option>
+        <option value="CARTE">Carte bancaire</option>
+        <option value="VIREMENT">Virement bancaire</option>
+        <option value="MOBILE_MONEY">Mobile Money</option>
+      </select>
+    </div>
+
+    <div>
+      <label class="block mb-2">Référence de transaction</label>
+      <input type="text"
+             formControlName="referenceTransaction"
+             class="w-full p-2 border rounded">
+    </div>
+
+    <button type="submit"
+            [disabled]="paiementForm.invalid || loading"
+            class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 disabled:bg-gray-400">
+      {{loading ? 'Traitement...' : 'Confirmer le paiement'}}
+    </button>
+  </form>
+</div>

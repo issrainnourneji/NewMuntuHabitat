@@ -1,0 +1,39 @@
+<div class="container">
+  <h2 class="text-center text-primary">List of Users</h2>
+
+  <div *ngIf="error" >{{ error }}</div>
+  <div *ngIf="!error && users.length === 0" >No users found.</div>
+
+  <!-- Table Container -->
+  <div *ngIf="users.length > 0" class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users | paginate: { itemsPerPage: 6, currentPage: p}">
+          <td>{{ user.id }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.phoneNumber }}</td>
+          <td>{{ user.role }}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="confirmDelete(user.id)"><i class="bi bi-trash"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<modal-delete-confirmation [modalParams]="params" (onSubmitModal)="delete()"></modal-delete-confirmation>
+
+<notification
+></notification>

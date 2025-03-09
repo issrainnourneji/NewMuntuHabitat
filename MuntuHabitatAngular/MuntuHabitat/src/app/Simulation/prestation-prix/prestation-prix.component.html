@@ -1,0 +1,21 @@
+<div *ngIf="users.length > 0" class="users-container">
+  <h3>Users Assigned to You</h3>
+  <ul class="user-list">
+    <li *ngFor="let user of users  | paginate: { itemsPerPage: 5, currentPage: p }" class="user-item">
+      <span class="user-name">{{ user.name }}</span>
+      <span class="user-email">{{ user.email }}</span>
+      <span class="user-phone">{{ user.phoneNumber }}</span>
+    </li>
+  </ul>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+
+
+<div *ngIf="agent" class="agent-container">
+  <h3>Your Assigned Agent</h3>
+  <p class="agent-info">
+    <span class="agent-name">{{ agent.name }}</span>
+    <span class="agent-email">{{ agent.email }}</span>
+    <span class="agent-phone">{{ agent.phoneNumber }}</span>
+  </p>
+</div>

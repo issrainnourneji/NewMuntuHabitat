@@ -1,0 +1,118 @@
+<div class="container mt-5">
+  <h3 class="text-primary">Liste des questions et catégories</h3>
+  <table class="table table-bordered table-striped mt-3">
+    <thead>
+      <tr>
+        <th>Question</th>
+        <th>Type</th>
+        <th>Catégories</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let question of questions  | paginate: { itemsPerPage: 6, currentPage: p}">
+        <td>
+          <div *ngIf="editingQuestion?.id === question.id; else viewMode">
+            <input
+              type="text"
+              [(ngModel)]="editingQuestion.text"
+              class="form-control"
+              placeholder="Modifier la question"
+            />
+          </div>
+          <ng-template #viewMode>
+            {{ question.text }}
+          </ng-template>
+        </td>
+        <td>
+          <div *ngIf="editingQuestion?.id === question.id; else typeView">
+            <select [(ngModel)]="editingQuestion.type" class="form-control">
+              <option value="Rénovation">Rénovation</option>
+              <option value="Extention">Extention</option>
+              <option value="Aménagement">Aménagement</option>
+              <option value="Solutions">Solutions</option>
+            </select>
+          </div>
+          <ng-template #typeView>
+            {{ question.type }}
+          </ng-template>
+        </td>
+        <td>
+          <ul>
+            <li *ngFor="let category of question.categories">
+              <div *ngIf="editingCategory?.id === category.id; else categoryView">
+                <input
+                  type="text"
+                  [(ngModel)]="editingCategory.title"
+                  class="form-control"
+                  placeholder="Titre de la catégorie"
+                />
+                <input
+                  type="text"
+                  [(ngModel)]="editingCategory.content"
+                  class="form-control"
+                  placeholder="Contenu de la catégorie"
+                />
+                <input
+                  type="number"
+                  [(ngModel)]="editingCategory.price"
+                  class="form-control"
+                  placeholder="Prix"
+                />
+                <button
+                  class="btn btn-primary btn-sm mt-2"
+                  (click)="saveCategory(question)"
+                >
+                  <i class="bi bi-save"></i>
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm mt-2"
+                  (click)="cancelCategoryEdit()"
+                >
+                  <i class="bi bi-x-circle"></i>
+                </button>
+              </div>
+              <ng-template #categoryView>
+                <strong>{{ category.title }}</strong>: {{ category.content }}
+                ({{ category.price | currency }})
+                <button
+                  class="btn  btn-sm ms-2"
+                  (click)="editCategory(category)"
+                >
+                  <i class="bi bi-pencil-square"></i>
+                </button>
+              </ng-template>
+            </li>
+          </ul>
+        </td>
+        <td>
+          <div *ngIf="editingQuestion?.id === question.id; else actionView">
+            <button class="btn btn-primary btn-sm" (click)="saveQuestion()">
+              <i class="bi bi-save"></i>
+            </button>
+            <button class="btn btn-secondary btn-sm" (click)="cancelEdit()">
+              <i class="bi bi-x-circle"></i>
+            </button>
+          </div>
+          <ng-template #actionView>
+            <button
+              class="btn btn-info btn-sm"
+              (click)="editQuestion(question)"
+            >
+              <i class="bi bi-pencil-square"></i>
+            </button>
+            <button
+              class="btn btn-danger btn-sm"
+              (click)="deleteQuestion(question.id!)"
+            >
+              <i class="bi bi-trash"></i>
+            </button>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<notification
+></notification>

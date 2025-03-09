@@ -1,0 +1,169 @@
+.facture-container {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.facture-header {
+  background-color: #efefef;
+  color: #193152;
+  padding: 20px;
+  border-radius: 10px 10px 0 0;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.facture-details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+}
+
+.facture-details h3 {
+  color: #193152;
+  margin-bottom: 10px;
+}
+
+.facture-details p {
+  font-size: 0.9rem;
+  color: #333;
+  margin: 5px 0;
+}
+
+.table {
+  margin-top: 20px;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+
+.table thead {
+  background-color: #193152;
+  color: white;
+}
+
+.table th, .table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #dddddd;
+  font-size: 0.9rem;
+}
+
+.table tbody tr {
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.table tbody tr:hover {
+  background-color: #eaf2fb;
+}
+
+.facture-summary {
+  margin-top: 30px;
+  text-align: right;
+  font-weight: bold;
+}
+
+.facture-summary p {
+  margin: 5px 0;
+  font-size: 1.1rem;
+}
+
+.facture-summary .total {
+  font-size: 1.4rem;
+  color: #193152;
+}
+
+.facture-payment {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #efefef;
+  color: #193152;
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+
+.facture-payment h4 {
+  margin-bottom: 10px;
+  color: #193152;
+}
+
+.btn-facture {
+  background-color: #193152;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: block;
+  margin: 20px auto 0;
+  transition: background-color 0.3s ease;
+}
+
+.btn-facture:hover {
+  background-color: #4c8ec4;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+}
+
+.toggle-button, .download-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.toggle-button {
+  background-color: #4c8ec4;
+  color: white;
+}
+
+.toggle-button:hover {
+  background-color: #3a6f9a;
+  transform: translateY(-2px);
+}
+
+.download-button {
+  background-color: #193152;
+  color: white;
+}
+
+.download-button:hover {
+  background-color: #142b3e;
+  transform: translateY(-2px);
+}
+
+.toggle-button, .download-button {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.company-logo img {
+  max-width: 200px; /* Largeur maximale du logo */
+  max-height: 200px; /* Hauteur maximale du logo */
+  object-fit: contain;
+  margin: 30px; /* Garde les proportions de l'image */
+}
+
+@media (max-width: 768px) {
+  .company-details .card-body {
+    flex-direction: column; /* Empile le contenu en colonnes sur les petits écrans */
+    align-items: center;
+    text-align: center;
+  }
+
+  .company-logo {
+    margin-bottom: 1rem;
+    /* Espace entre le logo et les détails */
+  }
+}

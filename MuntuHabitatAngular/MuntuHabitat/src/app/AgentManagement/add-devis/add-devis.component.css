@@ -1,0 +1,43 @@
+h2 {
+  font-weight: bold;
+  color: #193152;
+}
+
+.company-details {
+  background: #f8f9fa;
+  border-left: 4px solid #4c8ec4;
+}
+
+.table thead th {
+  background: #4372b4;
+  color: white;
+}
+
+.btn-secondary {
+  background: #4c8ec4;
+  border-color: #4c8ec4;
+}
+
+.btn-secondary:hover {
+  background: #193152;
+  border-color: #193152;
+}
+.company-logo img {
+  max-width: 200px; /* Largeur maximale du logo */
+  max-height: 200px; /* Hauteur maximale du logo */
+  object-fit: contain;
+  margin: 30px; /* Garde les proportions de l'image */
+}
+
+@media (max-width: 768px) {
+  .company-details .card-body {
+    flex-direction: column; /* Empile le contenu en colonnes sur les petits écrans */
+    align-items: center;
+    text-align: center;
+  }
+
+  .company-logo {
+    margin-bottom: 1rem;
+    /* Espace entre le logo et les détails */
+  }
+}

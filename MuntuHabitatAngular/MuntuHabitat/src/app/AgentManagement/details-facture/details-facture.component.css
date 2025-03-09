@@ -1,0 +1,121 @@
+/* Global Styles */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f7f9fc;
+  color: #4a4a4a;
+}
+
+/* Header Title */
+h3.text-center {
+  font-weight: bold;
+  color: #0056b3;
+}
+
+/* Factures List */
+.list-group-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  transition: box-shadow 0.3s;
+}
+
+.list-group-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo */
+.company-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* Facture Title */
+.contract-title {
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: #0056b3;
+  transition: color 0.3s;
+}
+
+.contract-title:hover {
+  color: #003f87;
+}
+
+/* Details Section */
+.details-row {
+  margin-top: 20px;
+}
+
+.details-row h5 {
+  margin-bottom: 10px;
+}
+
+.text-info {
+  color: #1e88e5;
+}
+
+.text-warning {
+  color: #ffa726;
+}
+
+/* Table */
+.table {
+  margin-top: 20px;
+}
+
+.table thead th {
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+}
+
+.table tbody td {
+  text-align: center;
+}
+
+/* Summary */
+.facture-summary p {
+  margin-bottom: 10px;
+}
+
+.facture-summary .total {
+  font-size: 1.2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .details-row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .details-row .col-md-6 {
+    margin-bottom: 15px;
+  }
+}
+/* Responsive */
+@media (max-width: 768px) {
+  .signature-block {
+    margin-bottom: 30px; /* Espacement entre les signatures sur petits écrans */
+  }
+}
+/* Couleurs */
+.text-primary {
+  color: #193152; /* Bleu foncé */
+}
+/* Conteneur des signatures */
+.signature-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 150px;
+}
+
+.signature-font {
+  font-family: 'Georgia', serif; /* Police élégante pour l'entreprise */
+  letter-spacing: 1.5px;
+}

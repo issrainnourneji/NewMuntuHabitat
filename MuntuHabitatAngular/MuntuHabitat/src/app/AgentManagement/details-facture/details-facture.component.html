@@ -1,0 +1,110 @@
+<div *ngIf="factures && factures.length > 0; else loading">
+  <h3 class="text-center my-4">Factures</h3>
+  <div class="list-group">
+    <div *ngFor="let facture of factures | paginate: { itemsPerPage: 5, currentPage: p } " class="list-group-item mb-3 shadow-sm rounded">
+      <div class="d-flex align-items-center justify-content-between">
+        <h4 (click)="selectFacture(facture)" class="contract-title cursor-pointer font-weight-bold text-primary mb-0">
+          Facture ID: {{ facture.factureId }}
+        </h4>
+        <button type="button" class="btn btn-danger me-2" (click)="confirmDelete(facture.factureId)">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </div>
+
+      <div *ngIf="selectedFacture === facture">
+        <hr />
+        <div class="contract-container">
+          <!-- Logo et détails de l'entreprise -->
+          <div class="d-flex align-items-center mb-4">
+            <img src="../../../assets/MUNTU-Habitat-Logo-vertical.png" alt="Logo de l'entreprise" class="company-logo me-3" />
+            <div>
+              <h5 class="text mb-0">Muntu Informatique</h5>
+            </div>
+          </div>
+
+          <!-- Détails utilisateur et agent -->
+          <div class="row mb-4">
+            <div class="col-12 col-md-6">
+              <h5 class="font-weight-semibold">Détails de l'Utilisateur</h5>
+              <p><strong>Nom :</strong> {{ facture.user.name }}</p>
+              <p><strong>Email :</strong> {{ facture.user.email }}</p>
+              <p><strong>Téléphone :</strong> {{ facture.user.phone }}</p>
+              <p><strong>Adresse :</strong> {{ facture.user.address }}</p>
+            </div>
+            <div class="col-12 col-md-6">
+              <h5 class="font-weight-semibold">Détails de l'Agent</h5>
+              <p><strong>Nom :</strong> {{ facture.agent.name }}</p>
+              <p><strong>Email :</strong> {{ facture.agent.email }}</p>
+              <p><strong>Téléphone :</strong> {{ facture.agent.phone }}</p>
+              <p><strong>Adresse :</strong> {{ facture.agent.address }}</p>
+            </div>
+          </div>
+
+          <!-- Table des prestations -->
+          <h3 class="font-weight-bold mt-4">Détails de la facture</h3>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Description</th>
+                  <th>Lot</th>
+                  <th>Prix unitaire</th>
+                  <th>Unité</th>
+                  <th>Quantité</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let prestation of facture.prestations">
+                  <td>{{ prestation.designation }}</td>
+                  <td>{{ prestation.lot }}</td>
+                  <td>{{ prestation.prixUnitaire | currency }}</td>
+                  <td>{{ prestation.unite }}</td>
+                  <td>{{ prestation.quantite }}</td>
+                  <td>{{ prestation.prixUnitaire * prestation.quantite | currency }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Résumé des totaux -->
+          <div class="facture-summary text-end">
+            <p><strong>Sous-total :</strong> <span class="text">{{ facture.sousTotal | currency }}</span></p>
+            <p><strong>Taxes :</strong> <span class="text">{{ facture.taxe | currency }}</span></p>
+            <p class="font-weight-bold total"><strong>Total TTC :</strong> <span class="text">{{ facture.totalTTC | currency }}</span></p>
+          </div>
+
+          <!-- Informations de paiement -->
+          <div class="facture-payment mt-4">
+            <h4 class="font-weight-semibold">Informations de paiement</h4>
+            <p><strong>Méthode :</strong> Virement bancaire</p>
+            <p><strong>Coordonnées bancaires :</strong> IBAN: FR76 1234 5678 9012 3456 7890 123</p>
+            <p><strong>Conditions :</strong> Paiement sous 30 jours après réception.</p>
+            <p><strong>Référence :</strong> FACT-{{ facture.factureId }}</p>
+          </div>
+
+          <div class="col-md-12 col-12  p-4 signature-block" >
+            <p class="fw-bold mb-2">Signature de l'Entreprise:</p>
+            <h1 class=" fw-bold text-primary signature-font">Muntu Habitat</h1>
+          </div>
+        </div>
+
+          <!-- Logo et détails de l'entreprise -->
+          <hr />
+          <div class="d-flex align-items-center">
+            <img src="../../../assets/MUNTU-Habitat-Logo-vertical.png" alt="Logo de l'entreprise" class="company-logo me-3" />
+            <div>
+              <p class="text-muted mb-0">Bureau N°13 Centre Molka, 2092, Manar II-Tunisie</p>
+              <p class="text-muted mb-0">contact&#64;muntuinformatique.com | +33 (0) 2 53 35 22 78</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  <modal-delete-confirmation [modalParams]="params" (onSubmitModal)="deleteFacture()"></modal-delete-confirmation>
+<notification></notification>
+<ng-template #loading>
+  <p class="text-center">Chargement des factures...</p>
+</ng-template>
